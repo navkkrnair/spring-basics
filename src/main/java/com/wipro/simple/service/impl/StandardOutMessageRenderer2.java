@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import com.wipro.simple.service.MessageProvider;
 import com.wipro.simple.service.MessageRenderer;
 
-@Component
+@Component("renderer")
 public class StandardOutMessageRenderer2 implements MessageRenderer {
 	private MessageProvider messageProvider;
 

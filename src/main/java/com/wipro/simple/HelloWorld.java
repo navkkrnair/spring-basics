@@ -1,8 +1,11 @@
 package com.wipro.simple;
 
+import org.springframework.beans.factory.support.DefaultListableBeanFactory;
+import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.io.ClassPathResource;
 
 import com.wipro.simple.config.HelloWorldConfiguration;
 import com.wipro.simple.config.HelloWorldConfiguration2;
@@ -33,8 +36,16 @@ public class HelloWorld {
 		System.out.println("-------------------------------");
 
 		ApplicationContext annotationContext2 = new AnnotationConfigApplicationContext(HelloWorldConfiguration2.class);
-		MessageRenderer renderer3 = annotationContext2.getBean(MessageRenderer.class);
+		MessageRenderer renderer3 = annotationContext2.getBean("renderer", MessageRenderer.class);
 		renderer3.render();
+
+		System.out.println("-------------------------------");
+
+		DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
+		XmlBeanDefinitionReader bdr = new XmlBeanDefinitionReader(factory);
+		bdr.loadBeanDefinitions(new ClassPathResource("app-context.xml"));
+		StandardOutMessageRenderer renderer4 = factory.getBean("renderer", StandardOutMessageRenderer.class);
+		renderer4.render();
 	}
 
 }
