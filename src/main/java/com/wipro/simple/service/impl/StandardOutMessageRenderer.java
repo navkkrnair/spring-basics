@@ -3,18 +3,13 @@ package com.wipro.simple.service.impl;
 import com.wipro.simple.service.MessageProvider;
 import com.wipro.simple.service.MessageRenderer;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class StandardOutMessageRenderer implements MessageRenderer {
 	private MessageProvider messageProvider;
-
-	@Override
-	public void setMessageProvider(MessageProvider provider) {
-		this.messageProvider = provider;
-	}
-
-	@Override
-	public MessageProvider getMessageProvider() {
-		return this.messageProvider;
-	}
 
 	@Override
 	public void render() {

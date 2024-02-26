@@ -6,23 +6,18 @@ import org.springframework.stereotype.Component;
 import com.wipro.simple.service.MessageProvider;
 import com.wipro.simple.service.MessageRenderer;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Component("renderer")
 public class StandardOutMessageRenderer2 implements MessageRenderer {
+	@Getter
+	@Setter
 	private MessageProvider messageProvider;
 
 	@Autowired
 	public StandardOutMessageRenderer2(MessageProvider provider) {
 		this.messageProvider = provider;
-	}
-
-	@Override
-	public void setMessageProvider(MessageProvider provider) {
-		this.messageProvider = provider;
-	}
-
-	@Override
-	public MessageProvider getMessageProvider() {
-		return this.messageProvider;
 	}
 
 	@Override
